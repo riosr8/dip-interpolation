@@ -16,8 +16,9 @@ Due: Thur 9/13/18 11:59 PM
        - image-name: name of the image
        - scalex, scaley: scale to resize the image (eg. fx 0.5, fy 0.5 to make it half the original size)
        - method: "nearest_neightbor" or "bilinear" 
-  - Example: ./dip_hw1_resize.py -i cell2.jpg -fx 0.75 -fy 0.75 -m nearest_neighbor
-  -          or python dip_hw1_resize.py -i cell2.jpg -fx 0.75 -fy 0.75 -m nearest_neighbor
+  - Example: -./dip_hw1_resize.py -i cell2.jpg -fx 0.75 -fy 0.75 -m nearest_neighbor
+             -or 
+             -python dip_hw1_resize.py -i cell2.jpg -fx 0.75 -fy 0.75 -m nearest_neighbor
   - Please make sure your code runs when you run the above command from prompt/Terminal
   - Any output images or files must be saved to "output/" folder
   
@@ -33,8 +34,9 @@ If you do not like the structure, you are welcome to change the over all code, u
 
 1. the first part has to run using command
 
- ./dip_hw1_resize.py -i image-name -fx scalex -fy scaley -m method
-
+ -./dip_hw1_resize.py -i image-name -fx scalex -fy scaley -m method
+ -or
+ -python dip_hw1_resize.py -i image-name -fx scalex -fy scaley -m method
   
 2. Any output file or image should be written to output/ folder
 
