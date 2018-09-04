@@ -32,7 +32,7 @@ PS. Files not to be changed: requirements.txt and .circleci directory
 
 If you do not like the structure, you are welcome to change the over all code, under two stipulations:
 
-1. the first part has to run using command
+1. the code has to run using command
 
  - ./dip_hw1_resize.py -i image-name -fx scalex -fy scaley -m method
  - or
