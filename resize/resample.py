@@ -1,4 +1,5 @@
-
+import numpy as np
+np.set_printoptions(threshold=np.inf)
 
 class resample:
     def resize(self, image, fx=None, fy=None, interpolation=None):
@@ -24,9 +25,22 @@ class resample:
         """
 
         # Write your code for nearest neighbor interpolation here
+        print((fx, fy))
 
+        (width, height) = image.shape
+        (scaledWidth, scaledHeight) = (int(fy * width), int(fy * height))
+        resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
+        tempImage = np.resize(resampledImage, (width, height))
+        print('temp image shape', tempImage.shape)
+        print('original image shape', image.shape)
+        for i in range(0, scaledWidth):
+            for j in range(0, scaledHeight):
+                print((i, j), (int(i / fx), int(j / fy)))
+                (nx, ny) = (int(i / fx), int(j / fy))
+                tempImage[i+1, j+1] = image[nx+1, ny+1]
 
-        return image
+        resampledImage = np.resize(tempImage, (scaledWidth, scaledHeight))
+        return resampledImage
 
     def bilinear_interpolation(self, image, fx, fy):
         """resizes an image using bilinear interpolation approximation for resampling
