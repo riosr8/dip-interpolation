@@ -25,10 +25,9 @@ class resample:
         """
 
         # Write your code for nearest neighbor interpolation here
-        print((fx, fy))
 
         (width, height) = image.shape
-        (scaledWidth, scaledHeight) = (int(fy * width), int(fy * height))
+        (scaledWidth, scaledHeight) = (int(fx * width), int(fy * height))
         resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
 
         for i in range(0, scaledWidth):
@@ -47,11 +46,18 @@ class resample:
         """
 
         # Write your code for bilinear interpolation here
+        (width, height) = image.shape
+        (scaledWidth, scaledHeight) = (int(fy * width), int(fy * height))
+        resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
+
+        # for i in range(0, scaledWidth):
+        #     for j in range(0, scaledHeight):
+        #
 
         return image
 
     def linear_interpolation(self, p, scale):
-        # if p == 2:
-        #     print('here')
         interpolatedValue = int(p / scale)
         return interpolatedValue
+
+
