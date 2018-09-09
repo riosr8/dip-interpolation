@@ -30,16 +30,12 @@ class resample:
         (width, height) = image.shape
         (scaledWidth, scaledHeight) = (int(fy * width), int(fy * height))
         resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
-        tempImage = np.resize(resampledImage, (width, height))
-        print('temp image shape', tempImage.shape)
-        print('original image shape', image.shape)
+
         for i in range(0, scaledWidth):
             for j in range(0, scaledHeight):
-                print((i, j), (int(i / fx), int(j / fy)))
-                (nx, ny) = (int(i / fx), int(j / fy))
-                tempImage[i+1, j+1] = image[nx+1, ny+1]
+                (nx, ny) = (self.linear_interpolation(i, fx), self.linear_interpolation(j, fy))
+                resampledImage[i, j] = image[nx, ny]
 
-        resampledImage = np.resize(tempImage, (scaledWidth, scaledHeight))
         return resampledImage
 
     def bilinear_interpolation(self, image, fx, fy):
@@ -53,3 +49,9 @@ class resample:
         # Write your code for bilinear interpolation here
 
         return image
+
+    def linear_interpolation(self, p, scale):
+        # if p == 2:
+        #     print('here')
+        interpolatedValue = int(p / scale)
+        return interpolatedValue
