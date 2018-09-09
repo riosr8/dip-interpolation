@@ -30,10 +30,10 @@ class resample:
         (scaledWidth, scaledHeight) = (int(fx * width), int(fy * height))
         resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
 
-        for i in range(0, scaledWidth):
-            for j in range(0, scaledHeight):
-                (nx, ny) = (self.linear_interpolation(i, fx), self.linear_interpolation(j, fy))
-                resampledImage[i, j] = image[nx, ny]
+        for x in range(0, scaledWidth):
+            for y in range(0, scaledHeight):
+                (nx, ny) = self.interpolate(x, fx, y, fy)
+                resampledImage[x, y] = image[nx, ny]
 
         return resampledImage
 
@@ -56,8 +56,7 @@ class resample:
 
         return image
 
-    def linear_interpolation(self, p, scale):
-        interpolatedValue = int(p / scale)
-        return interpolatedValue
+    def interpolate(self, x, xScale, y, yScale):
+        return int(x / xScale), int(y / yScale)
 
 
