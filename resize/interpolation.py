@@ -25,4 +25,7 @@ class interpolation:
         # Write your code for bilinear interpolation here
         # May be you can reuse or call linear interpolatio method to compute this task
 
-        return
+        i1 = self.linear_interpolation([pt1[0][1], pt1[1]], [pt2[0][1], pt2[1]], unknown[1])
+        i2 = self.linear_interpolation([pt3[0][1], pt3[1]], [pt4[0][1], pt4[1]], unknown[1])
+
+        return self.linear_interpolation([pt1[0][0], i1], [pt3[0][0], i2], unknown[0])

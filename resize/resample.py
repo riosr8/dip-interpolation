@@ -1,4 +1,5 @@
 import numpy as np
+import math
 import resize.interpolation
 np.set_printoptions(threshold=np.inf)
 
@@ -60,11 +61,23 @@ class resample:
         (scaledWidth, scaledHeight) = (int(fy * width), int(fy * height))
         resampledImage = np.zeros((scaledWidth, scaledHeight), dtype=int)
 
-        # for i in range(0, scaledWidth):
-        #     for j in range(0, scaledHeight):
-        #
+        for x in range(0, scaledWidth):
+            for y in range(0, scaledHeight):
+                nx = math.floor(x / fx)
+                ny = math.floor(y / fy)
+                if (nx + 1) > width - 1:
+                    nx = width - 2
+                if (ny + 1) > height - 1:
+                    ny = height - 2
 
-        return image
+                n1 = (nx, ny)
+                n2 = (nx, ny+1)
+                n3 = (nx+1, ny)
+                n4 = (nx+1, ny+1)
+
+                resampledImage[x, y] = self.inter.bilinear_interpolation([n1, image[n1]], [n2, image[n2]], [n3, image[n3]],[n4, image[n4]], [x/fx, y/fy])
+
+        return resampledImage
 
 
 
