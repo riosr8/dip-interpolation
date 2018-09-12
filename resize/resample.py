@@ -1,7 +1,12 @@
 import numpy as np
+import resize.interpolation
 np.set_printoptions(threshold=np.inf)
 
 class resample:
+
+    def __init__(self):
+        self.inter = resize.interpolation.interpolation()
+
     def resize(self, image, fx=None, fy=None, interpolation=None):
         """calls the appropriate funciton to resample an image based on the interpolation method
         image: the image to be resampled
@@ -32,8 +37,13 @@ class resample:
 
         for x in range(0, scaledWidth):
             for y in range(0, scaledHeight):
-                (nx, ny) = self.interpolate(x, fx, y, fy)
-                resampledImage[x, y] = image[nx, ny]
+                nx = int(x / fx)
+                ny = int(y / fy)
+                if (nx + 1) > width - 1:
+                    nx = width - 2
+                if (ny + 1) > height - 1:
+                    ny = height - 2
+                resampledImage[x, y] = self.inter.linear_interpolation([ny, image[nx, ny]], [ny+1, image[nx, ny+1]], y/fy)
 
         return resampledImage
 
@@ -56,7 +66,7 @@ class resample:
 
         return image
 
-    def interpolate(self, x, xScale, y, yScale):
-        return int(x / xScale), int(y / yScale)
+
+
 
 
